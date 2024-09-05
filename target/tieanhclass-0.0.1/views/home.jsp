@@ -18,18 +18,54 @@
             font-weight: normal; /* Bỏ in đậm */
             margin-left: 5px; /* Khoảng cách giữa checkbox và label */
         }
+
+        .error-message {
+            color: red;
+            font-size: 14px;
+            margin-top: 5px;
+        }
     </style>
+
+    <script>
+        function validateForm() {
+            let isValid = true;
+            let errorMessages = [];
+
+            const referral = document.querySelector('input[name="referral"]:checked');
+
+            if (!referral) {
+                isValid = false;
+                errorMessages.push("Please select how you heard about us.");
+            }
+
+            // Hiển thị thông báo lỗi
+            const errorContainer = document.getElementById('error-container');
+            errorContainer.innerHTML = "";
+            if (!isValid) {
+                errorMessages.forEach(msg => {
+                    const errorMessage = document.createElement('div');
+                    errorMessage.classList.add('error-message');
+                    errorMessage.textContent = msg;
+                    errorContainer.appendChild(errorMessage);
+                });
+            }
+
+            return isValid;
+        }
+    </script>
 </head>
 <body>
 <div class="survey-container">
     <img src="<c:url value='/template/media/images.png' />" alt="Murach Logo" width="80" height="80" style="margin: 0px;">
     <h1>Survey</h1>
     <p>If you have a moment, we'd appreciate it if you would fill out this survey.</p>
-    <form action="<c:url value='/Thank'/>" id="formSubmit" method="post">
+
+    <!-- Hiển thị thông báo lỗi -->
+    <div id="error-container"></div>
+
+    <form action="<c:url value='/Thank'/>" id="formSubmit" method="post" onsubmit="return validateForm();">
         <div>
-
-            <h2>Your Infomation</h2>
-
+            <h2>Your Information</h2>
             <label for="first-name">First Name</label>
             <input type="text" id="first-name" name="first-name">
 
@@ -41,12 +77,11 @@
 
             <label for="dob">Date of Birth</label>
             <input type="date" id="dob" name="dob">
-
         </div>
 
         <div class="radio-group">
-            <h2>How did you hear about us ?</h2>
-            <input type="radio" id="search-engine" name="referral" value="Search engine" checked>
+            <h2>How did you hear about us?</h2>
+            <input type="radio" id="search-engine" name="referral" value="Search engine">
             <label for="search-engine">Search engine</label>
 
             <input type="radio" id="word-of-mouth" name="referral" value="Word of mouth">
@@ -62,25 +97,24 @@
         <div class="checkbox-group">
             <h2>Would you like to receive announcements about new CDs and special offers?</h2>
             <div class="checkbox-item">
-                <input type="checkbox" id="email-announcements" name="email-announcements" value="Yes">
+                <input type="checkbox" id="email-announcements" name="email-announcements" value="I'd like that.">
                 <label for="email-announcements">YES, I'd like that.</label>
             </div>
-            <br>
             <div class="checkbox-item">
-                <input type="checkbox" id="email-announcements" name="email-announcements" value="Yes">
+                <input type="checkbox" id="email-announcements" name="email-announcements" value="Send me an Email">
                 <label for="email-announcements">YES, please send me email announcements.</label>
             </div>
         </div>
 
         <label for="contact-method">Please contact me by:</label>
-        <select id="contact-method" name = "contact-method" class="dropdown">
+        <select id="contact-method" name="contact-method" class="dropdown">
             <option value="email">Email or postal mail</option>
             <option value="phone">Phone</option>
         </select>
 
         <br>
 
-        <button type="submit" style="margin-top:15px ;">Submit</button>
+        <button type="submit" style="margin-top:15px;">Submit</button>
     </form>
 </div>
 </body>

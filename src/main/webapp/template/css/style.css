@@ -5,6 +5,8 @@ body {
     padding: 20px;
     display: flex;
     height: 130vh;
+    justify-content: center; /* Căn giữa theo chiều ngang */
+    align-items: center;    /* Căn giữa theo chiều dọc */
 }
 .survey-container {
     background-color: white;

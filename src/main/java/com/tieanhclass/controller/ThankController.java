@@ -13,6 +13,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeFormatterBuilder;
+import java.util.Arrays;
 
 @WebServlet(urlPatterns = {"/Thank"})
 public class ThankController extends HttpServlet {
@@ -40,11 +42,14 @@ public class ThankController extends HttpServlet {
         String dobString = request.getParameter("dob");
 
         // Chuyển đổi ngày sinh từ chuỗi thành LocalDate
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        LocalDate dob = LocalDate.parse(dobString, formatter);
+        DateTimeFormatter formatter =  DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        LocalDate dob = null;
+        if (dobString != "") {
+            dob = LocalDate.parse(dobString, formatter);
+        }
 
         String referral = request.getParameter("referral");
-        boolean receiveOffers = request.getParameter("offer") != null;
+        String[] receiveOffers = request.getParameterValues("email-announcements") ;
         String contactMethod = request.getParameter("contact-method");
 
 
@@ -55,13 +60,17 @@ public class ThankController extends HttpServlet {
         userModel.setEmail(email);
         userModel.setDob(dob);
         userModel.setReferral(referral);
-        userModel.setReceiveOffers(receiveOffers);
+
+        if (receiveOffers != null) {
+            userModel.setReceiveOffers(Arrays.asList(receiveOffers));
+        }
+
+
         userModel.setContactMethod(contactMethod);
 
         request.setAttribute("userModel", userModel);
 
         RequestDispatcher rd = request.getRequestDispatcher("/views/thank.jsp");
         rd.forward(request, response);
-
     }
 }

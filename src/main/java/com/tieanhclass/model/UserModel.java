@@ -1,6 +1,8 @@
 package com.tieanhclass.model;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 public class UserModel {
 
@@ -9,7 +11,7 @@ public class UserModel {
     private String email;
     private LocalDate dob;
     private String referral;
-    private boolean receiveOffers;
+    private List<String> receiveOffers = new ArrayList<>();
     private String contactMethod;
 
     // Getter and Setter for firstName
@@ -58,11 +60,11 @@ public class UserModel {
     }
 
     // Getter and Setter for receiveOffers
-    public boolean isReceiveOffers() {
+    public List<String> getReceiveOffers() {
         return receiveOffers;
     }
 
-    public void setReceiveOffers(boolean receiveOffers) {
+    public void setReceiveOffers(List<String> receiveOffers) {
         this.receiveOffers = receiveOffers;
     }
 
