@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Murach Survey</title>
     <link rel="stylesheet" href="<c:url value='/template/css/style.css' />" />
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="<c:url value='/template/css/header.css' />" />
     <style>
         .checkbox-group .checkbox-item {
             display: inline-flex; /* Hiển thị thẻ input và label theo hàng ngang */
@@ -19,11 +21,7 @@
             margin-left: 5px; /* Khoảng cách giữa checkbox và label */
         }
 
-        .error-message {
-            color: red;
-            font-size: 14px;
-            margin-top: 5px;
-        }
+
     </style>
 
     <script>
@@ -55,67 +53,78 @@
     </script>
 </head>
 <body>
-<div class="survey-container">
-    <img src="<c:url value='/template/media/images.png' />" alt="Murach Logo" width="80" height="80" style="margin: 0px;">
-    <h1>Survey</h1>
-    <p>If you have a moment, we'd appreciate it if you would fill out this survey.</p>
 
-    <!-- Hiển thị thông báo lỗi -->
-    <div id="error-container"></div>
+<%@ include file="/common/header.jsp" %>
 
-    <form action="<c:url value='/Thank'/>" id="formSubmit" method="post" onsubmit="return validateForm();">
-        <div>
-            <h2>Your Information</h2>
-            <label for="first-name">First Name</label>
-            <input type="text" id="first-name" name="first-name">
+<div class="container-survey">
+    <div class="survey-container">
+        <img src="<c:url value='/template/media/images.png' />" alt="Murach Logo" width="80" height="80" style="margin: 0px;">
+        <h1>Survey</h1>
+        <p>If you have a moment, we'd appreciate it if you would fill out this survey.</p>
 
-            <label for="last-name">Last Name</label>
-            <input type="text" id="last-name" name="last-name">
+        <!-- Hiển thị thông báo lỗi -->
+        <div id="error-container"></div>
 
-            <label for="email">Email</label>
-            <input type="email" id="email" name="email">
+        <form action="<c:url value='/thank'/>" id="formSubmit" method="post" onsubmit="return validateForm();">
+            <div>
+                <h2>Your Information</h2>
+                <label for="first-name">First Name</label>
+                <input type="text" id="first-name" name="first-name">
 
-            <label for="dob">Date of Birth</label>
-            <input type="date" id="dob" name="dob">
-        </div>
+                <label for="last-name">Last Name</label>
+                <input type="text" id="last-name" name="last-name">
 
-        <div class="radio-group">
-            <h2>How did you hear about us?</h2>
-            <input type="radio" id="search-engine" name="referral" value="Search engine">
-            <label for="search-engine">Search engine</label>
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email">
 
-            <input type="radio" id="word-of-mouth" name="referral" value="Word of mouth">
-            <label for="word-of-mouth">Word of mouth</label>
-
-            <input type="radio" id="social-media" name="referral" value="Social media">
-            <label for="social-media">Social media</label>
-
-            <input type="radio" id="other" name="referral" value="Other">
-            <label for="other">Other</label>
-        </div>
-
-        <div class="checkbox-group">
-            <h2>Would you like to receive announcements about new CDs and special offers?</h2>
-            <div class="checkbox-item">
-                <input type="checkbox" id="email-announcements" name="email-announcements" value="I'd like that.">
-                <label for="email-announcements">YES, I'd like that.</label>
+                <label for="dob">Date of Birth</label>
+                <input type="date" id="dob" name="dob">
             </div>
-            <div class="checkbox-item">
-                <input type="checkbox" id="email-announcements" name="email-announcements" value="Send me an Email">
-                <label for="email-announcements">YES, please send me email announcements.</label>
+
+            <div class="radio-group">
+                <h2>How did you hear about us?</h2>
+                <input type="radio" id="search-engine" name="referral" value="Search engine">
+                <label for="search-engine">Search engine</label>
+
+                <input type="radio" id="word-of-mouth" name="referral" value="Word of mouth">
+                <label for="word-of-mouth">Word of mouth</label>
+
+                <input type="radio" id="social-media" name="referral" value="Social media">
+                <label for="social-media">Social media</label>
+
+                <input type="radio" id="other" name="referral" value="Other">
+                <label for="other">Other</label>
             </div>
-        </div>
 
-        <label for="contact-method">Please contact me by:</label>
-        <select id="contact-method" name="contact-method" class="dropdown">
-            <option value="email">Email or postal mail</option>
-            <option value="phone">Phone</option>
-        </select>
+            <div class="checkbox-group">
+                <h2>Would you like to receive announcements about new CDs and special offers?</h2>
+                <div class="checkbox-item">
+                    <input type="checkbox" id="email-announcements" name="email-announcements" value="I'd like that.">
+                    <label for="email-announcements">YES, I'd like that.</label>
+                </div>
+                <div class="checkbox-item">
+                    <input type="checkbox" id="email-announcements" name="email-announcements" value="Send me an Email">
+                    <label for="email-announcements">YES, please send me email announcements.</label>
+                </div>
+            </div>
 
-        <br>
+            <label for="contact-method">Please contact me by:</label>
+            <select id="contact-method" name="contact-method" class="dropdown">
+                <option value="email">Email or postal mail</option>
+                <option value="phone">Phone</option>
+            </select>
 
-        <button type="submit" style="margin-top:15px;">Submit</button>
-    </form>
+            <br>
+
+            <button type="submit" style="margin-top:15px;">Submit</button>
+        </form>
+    </div>
 </div>
+
+<%@ include file="/common/footer.jsp" %>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
 </body>
 </html>

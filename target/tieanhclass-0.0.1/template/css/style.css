@@ -1,4 +1,5 @@
-body {
+.container-survey {
+
     font-family: Arial, sans-serif;
     /*background-color: #f4f4f4;*/
     background-image: url("../media/multi-layers-blue-color-texture-3d-papercut-layers-in-gradient-banner-abstract-paper-cut-art-background-design-for-website-template-topography-map-concept-or-.jpg");
@@ -6,11 +7,12 @@ body {
     margin: 0;
     padding: 20px;
     display: flex;
-    height: 130vh;
+    height: 1200px;
     justify-content: center; /* Căn giữa theo chiều ngang */
     align-items: center;    /* Căn giữa theo chiều dọc */
 }
 .survey-container {
+    margin-top : 30px;
     background-color: white;
     padding: 20px;
     border-radius: 8px;
@@ -24,6 +26,11 @@ body {
 .survey-container h1 {
     /* text-align: cent; */
     font-size: 24px;
+    margin-bottom: 20px;
+}
+.survey-container h2 {
+    /* text-align: cent; */
+    font-size: 20px;
     margin-bottom: 20px;
 }
 .survey-container label {

@@ -13,8 +13,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Thank You</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="<c:url value='/template/css/header.css' />" />
     <style>
-        body {
+        .container-thank {
             font-family: Arial, sans-serif;
             background: url("<c:url value='/template/media/img.png' />") no-repeat  ;
             /* background-size: contain; */
@@ -46,29 +48,42 @@
     </style>
 </head>
 <body>
-<div class="thank-you-container">
-    <h1>Thank You!</h1>
-    <p>Thank you for completing the survey. Here is a summary of your responses:</p>
-    <p><strong>First Name:</strong> <span id="first-name"></span>${userModel.firstName}</p>
-    <p><strong>Last Name:</strong> <span id="last-name"></span>${userModel.lastName}</p>
-    <p><strong>Email:</strong> <span id="email"></span>${userModel.email}</p>
-    <p><strong>Date of Birth:</strong> <span id="dob"></span>
-        <c:if test="${not empty userModel.dob}">
-            ${userModel.dob}</p>
+
+<%@ include file="/common/header.jsp" %>
+
+<div class="container-thank" >
+
+    <div class="thank-you-container">
+        <h1>Thank You!</h1>
+        <p>Thank you for completing the survey. Here is a summary of your responses:</p>
+        <p><strong>First Name:</strong> <span id="first-name"></span>${userModel.firstName}</p>
+        <p><strong>Last Name:</strong> <span id="last-name"></span>${userModel.lastName}</p>
+        <p><strong>Email:</strong> <span id="email"></span>${userModel.email}</p>
+        <p><strong>Date of Birth:</strong> <span id="dob"></span>
+            <c:if test="${not empty userModel.dob}">
+                ${userModel.dob}</p>
         </c:if>
-    <p><strong>How did you hear about us?</strong> <span id="referral"></span>${userModel.referral}</p>
-    <p><strong>Would you like to receive announcements about new CDs and special offers?</strong> <span id="offer"></span>
-        <c:if test="${not empty userModel }">
-<%--            <c:if test="${not empty userModel.receiveOffers}">--%>
-                <ul>
-                    <c:forEach var="option" items="${userModel.receiveOffers}">
-                        <li>${option}</li>
-                    </c:forEach>
-                </ul>
-<%--            </c:if>--%>
+        <p><strong>How did you hear about us?</strong> <span id="referral"></span>${userModel.referral}</p>
+        <p><strong>Would you like to receive announcements about new CDs and special offers?</strong> <span id="offer"></span>
+            <c:if test="${not empty userModel }">
+                <%--            <c:if test="${not empty userModel.receiveOffers}">--%>
+        <ul>
+            <c:forEach var="option" items="${userModel.receiveOffers}">
+                <li>${option}</li>
+            </c:forEach>
+        </ul>
+            <%--            </c:if>--%>
         </c:if>
-    </p>
-    <p><strong>Preferred Contact Method:</strong> <span id="contact-method"></span>${userModel.contactMethod}</p>
+        </p>
+        <p><strong>Preferred Contact Method:</strong> <span id="contact-method"></span>${userModel.contactMethod}</p>
+    </div>
+
 </div>
+
+<%@ include file="/common/footer.jsp" %>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
 </body>
 </html>

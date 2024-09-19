@@ -34,4 +34,8 @@
 		<tracking-mode>COOKIE</tracking-mode>
 	</session-config>
 
+	<error-page>
+		<location>/views/error404.jsp</location>
+	</error-page>
+
 </web-app>
